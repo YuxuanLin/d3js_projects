@@ -176,7 +176,7 @@ function updateBreadcrumbs(nodeArray, percentageString) {
         return "translate(" +  (shift + i * 4) + ", 0)";//TODO
     });
 
-  // // Remove exiting nodes.
+  // Remove exiting nodes.
   g.exit().remove();
   //Now move and update the percentage at the end.
   d3.select("#trail").select("#endlabel")
