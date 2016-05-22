@@ -153,7 +153,6 @@ function updateBreadcrumbs(nodeArray, percentageString) {
     var g = d3.select("#trail")
         .selectAll("g")
         .data(nodeArray, function(d) { return d.name + d.depth; });
-
   // Add breadcrumb and label for entering nodes.
     var entering = g.enter().append("svg:g");
 
@@ -176,19 +175,19 @@ function updateBreadcrumbs(nodeArray, percentageString) {
         return "translate(" +  (shift + i * 4) + ", 0)";//TODO
     });
 
-  // // Remove exiting nodes.
-  g.exit().remove();
-  //Now move and update the percentage at the end.
-  d3.select("#trail").select("#endlabel")
-      .attr("x", totalLength + 60)//TODO
-      .attr("y", b.h /2 )
-      .attr("dy", "0.35em")
-      .attr("text-anchor", "middle")
-      .text(percentageString);
+    // Remove exiting nodes.
+    g.exit().remove();
+    //Now move and update the percentage at the end.
+    d3.select("#trail").select("#endlabel")
+        .attr("x", totalLength + 50)//TODO
+        .attr("y", b.h /2 )
+        .attr("dy", "0.35em")
+        .attr("text-anchor", "middle")
+        .text(percentageString);
 
-  // // Make the breadcrumb trail visible, if it's hidden.
-  d3.select("#trail")
-      .style("visibility", "");
+    // // Make the breadcrumb trail visible, if it's hidden.
+    d3.select("#trail")
+        .style("visibility", "");
 
 }
 
