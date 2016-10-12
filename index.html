@@ -11,7 +11,7 @@ body {
 }
 #explanation {
   position: absolute;
-  top: 180px;
+  top: 300px;
   left:10px;
   width: 140px;
   text-align: center;
@@ -257,11 +257,13 @@ function updateBreadcrumbs(nodeArray, percentageString) {
     totalLength += getLength(nodeArray[i].name.length);
   }
   totalLength += getLength(nodeArray[nodeArray.length-1].name.length);
+  
   // Data join; key function combines name and depth (= position in sequence).
   var g = d3.select("#trail")
     .selectAll("g")
     .data(nodeArray, function(d) { return d.name + d.depth; });
-// Add breadcrumb and label for entering nodes.
+  
+  // Add breadcrumb and label for entering nodes.
   var entering = g.enter().append("svg:g");
 
   entering.append("svg:polygon")
@@ -274,7 +276,8 @@ function updateBreadcrumbs(nodeArray, percentageString) {
     .attr("dy", "0.35em")
     .attr("text-anchor", "middle")
     .text(function(d) { return d.name;});
-// Set position for entering and updating nodes.
+  
+  // Set position for entering and updating nodes.
   g.attr("transform", function(d, i) {
     var shift = 0;
     for(var n = 0; n < i; n++){// -1 to avoid plusing itself's length
@@ -285,6 +288,7 @@ function updateBreadcrumbs(nodeArray, percentageString) {
 
   // Remove exiting nodes.
   g.exit().remove();
+
   //Now move and update the percentage at the end.
   d3.select("#trail").select("#endlabel")
     .attr("x", totalLength + 50)//TODO
@@ -293,7 +297,7 @@ function updateBreadcrumbs(nodeArray, percentageString) {
     .attr("text-anchor", "middle")
     .text(percentageString);
 
-  // // Make the breadcrumb trail visible, if it's hidden.
+  // Make the breadcrumb trail visible, if it's hidden.
   d3.select("#trail")
     .style("visibility", "");
 
@@ -332,6 +336,7 @@ function mouseover(d) {
     default:
       break;
   }
+
   d3.select("#rank")
     .text(rank);
 
